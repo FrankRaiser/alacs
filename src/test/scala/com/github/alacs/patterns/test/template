@@ -1,0 +1,14 @@
+package com.github.alacs.test.patterns
+
+import com.github.alacs.AlacsPatternSpec
+
+class AlacsPatternXXXSpec extends AlacsPatternSpec {
+
+  val patternNumber = XXX
+  
+  def is = 
+  "Pattern XXX: XYZ should" 						^
+    "be positive for Z1"							! positive("File1")^
+    "be negative for Z2"							! negative("File2")^
+    												end
+}

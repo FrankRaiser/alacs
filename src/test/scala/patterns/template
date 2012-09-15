@@ -1,7 +1,0 @@
-package com.github.alacs
-
-class AlacsPatternXXXTests extends AlacsPatternSuite {
-
-  positive("positive example", "File")
-  negative("negative example", "File")
-}
