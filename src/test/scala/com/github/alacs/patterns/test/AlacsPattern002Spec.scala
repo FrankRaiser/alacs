@@ -11,5 +11,6 @@ class AlacsPattern002Spec extends AlacsPatternSpec {
     "detect hex 0"										! positive("DivBy0Hex")^
     "detect mod 0"										! positive("Mod0")^
     "avoid div by 1"									! negative("DivBy1")^
+    "check types to avoid overloading problems"			! negative("OverloadedDivBy0")^
     													end
 }

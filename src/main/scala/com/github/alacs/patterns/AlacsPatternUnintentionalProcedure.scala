@@ -9,8 +9,6 @@ class AlacsPatternUnintentionalProcedure(global: Global) extends PatternDetector
 
   override val pattern = BugPattern(1, BugInfo("unintentional procedure"))
   
-  val phase = com.github.alacs.ParserPhase
-  
   @tailrec
   private def getLastExprOfBlock(tree: Tree) : Tree = tree match {
     case Block(_, last) => getLastExprOfBlock(last)

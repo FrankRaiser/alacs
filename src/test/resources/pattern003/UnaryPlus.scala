@@ -1,0 +1,3 @@
+object UnaryPlus {
+  +1
+}

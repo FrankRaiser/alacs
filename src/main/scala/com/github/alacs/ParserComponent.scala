@@ -20,10 +20,27 @@ class ParserComponent(val phase : CompilerPhase, val global: Global) extends Plu
 
   class ParserPhase(prev: Phase) extends StdPhase(prev) {
     override def name = ParserComponent.this.phaseName
+    
+    // remember patterns that failed internally, so we don't blow up the
+    // whole console with hundreds of info messages that the pattern
+    // doesn't work.
+    private var failedPatterns : List[PatternDetector] = Nil
+    
     override def apply(unit: CompilationUnit) {
       for (tree <- unit.body) {
         try {
-          val bugs: List[Bug] = patterns flatMap (_ analyzeTree tree )
+          val bugs: List[Bug] = patterns flatMap ( pat =>
+              try {
+                if (failedPatterns.contains(pat)) None
+                else pat analyzeTree tree 
+              } catch {
+                case ex =>
+                  failedPatterns = pat :: failedPatterns
+                  global.reporter.info(tree.pos, 
+                      "Internal implementation error in pattern: " + pat.getClass.getSimpleName,
+                      false)
+                  None
+              })
         }
         catch {
           case e => e.printStackTrace

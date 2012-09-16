@@ -42,7 +42,6 @@ object RunPlugin {
           phasesSet += phase
       }
     }
-    println("### " + testPrefix + fileName)
     (new compiler.Run).compile(List(testPrefix + fileName))
     reporter.infos.toList
   }

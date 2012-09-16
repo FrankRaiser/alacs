@@ -9,6 +9,9 @@ class AlacsPatternXXX(global: Global) extends PatternDetector(global) {
 
   override val pattern = BugPattern(XXX, BugInfo("XXXXXXXX"))
   
+  // If other phase is needed
+  //override val phase = com.github.alacs.TyperPhase
+  
   override def analyzeTree(tree: GTree) = {
     val bug = Bug(pattern, tree.pos)
     tree match {

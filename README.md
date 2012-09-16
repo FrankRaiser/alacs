@@ -31,6 +31,11 @@ There are two ways to contribute to Alacs:
 
 Thank you for helping improve Alacs!
 
-### History ###
+## History ##
 
 This project was originally forked from [Yuvi Masory](https://github.com/ymasory/alacs), but most parts have been completely rewritten after the fork.
+
+### Changes/Updates to [ymasory/alacs](https://github.com/ymasory/alacs) ###
+
+* Removed old pattern 003, as mod by 1 seems to result in 0 during early parsing already
+* Fixed open issues of ymasory/alacs: #10, #11, #12, #13, #18
