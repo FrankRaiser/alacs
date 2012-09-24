@@ -3,11 +3,12 @@ package com.github.alacs.patterns
 import scala.tools.nsc.Global
 import com.github.alacs.{Bug, BugInfo, BugPattern}
 import scala.annotation.tailrec
+import com.github.alacs.Patterns
 
 class AlacsPatternUnintentionalProcedure(global: Global) extends PatternDetector(global) {
   import global._
 
-  override val pattern = BugPattern(1, BugInfo("unintentional procedure"))
+  override val pattern = Patterns.UnintentionalProcedure
   
   @tailrec
   private def getLastExprOfBlock(tree: Tree) : Tree = tree match {

@@ -14,9 +14,16 @@ class ParserComponent(val phase : CompilerPhase, val global: Global) extends Plu
   override def newPhase(_prev: Phase) =
     new ParserPhase(_prev)
   
-  val patterns : List[PatternDetector] = ParserComponent.patterns
+  def patterns : List[PatternDetector] = ParserComponent.patterns
     .map(_.newInstance(global))
     .filter(_.phase == phase)
+    .filter(x => !excludeNums.contains(x.pattern.bugId))
+    
+  private var excludeNums = Set[Int]()
+  
+  def exclude(nums : Seq[Int]) {
+    excludeNums = excludeNums ++ nums
+  }
 
   class ParserPhase(prev: Phase) extends StdPhase(prev) {
     override def name = ParserComponent.this.phaseName

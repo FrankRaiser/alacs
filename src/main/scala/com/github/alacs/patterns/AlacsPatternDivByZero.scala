@@ -2,11 +2,12 @@ package com.github.alacs.patterns
 
 import scala.tools.nsc.Global
 import com.github.alacs.{Bug, BugInfo, BugPattern}
+import com.github.alacs.Patterns
 
 class AlacsPatternDivByZero(global: Global) extends PatternDetector(global) {
   import global._
 
-  override val pattern = BugPattern(2, BugInfo("divide by literal 0"))
+  override val pattern = Patterns.DivByZero
   
   override val phase = com.github.alacs.TyperPhase
   
